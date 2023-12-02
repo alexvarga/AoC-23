@@ -1,6 +1,10 @@
+
+import os
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
 import re
 sum = 0
-with open('day1/input.txt') as file:
+with open(dir_path+'/input.txt', 'r') as file:
     lines = file.readlines()
 
 for line in lines:
