@@ -7,6 +7,7 @@ with open(dir_path+'/input.txt') as file:
 max=[12, 13, 14]
 finalSum = 0
 gamesArray=[]
+powerSum = 0
 
 def checkValidity(oneGame):
     for index in range(0, len(oneGame)):
@@ -14,6 +15,15 @@ def checkValidity(oneGame):
             return False
     return True
 
+
+def getMinimum(oneGame):
+    min=[0, 0, 0]
+    for index in range(0, len(oneGame)):
+        for i in range (0, 3):
+            if(oneGame[index][i]>min[i]):
+                min[i]=oneGame[index][i]
+
+    return min[0]*min[1]*min[2]
 
 
 for i in range (0, len(lines)):
@@ -33,5 +43,7 @@ for i in range (0, len(lines)):
         oneGame.append(onePull)
     if checkValidity(oneGame):
         finalSum+=int(i+1)
+    powerSum += getMinimum(oneGame)
     gamesArray.append(oneGame)
 print(finalSum)
+print(powerSum)
