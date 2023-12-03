@@ -23,7 +23,8 @@ for i in range(0, len(lines)):
     # print(mo)\
     digits=[]
     digitsLine=[]
-    symbolLine=[]
+    symbolLine=[0 for i in range ( 0,  len(lines[i].split('\n')[0])) ]
+    # print(symbolLine)
     lastDigitPos=-10
     firstDigitPos=-10
     wholeDigit = ''
@@ -31,6 +32,7 @@ for i in range(0, len(lines)):
         if(lines[i][j]=='\n'):
             continue
         if(lines[i][j].isdigit()):
+
             # print('digit', i, j)
             if(lastDigitPos+1==j and lastDigitPos>-1):
                 wholeDigit+=(str(lines[i][j]))
@@ -43,10 +45,18 @@ for i in range(0, len(lines)):
                 # print(wholeDigit, firstDigitPos, lastDigitPos)
                 digitsLine.append([firstDigitPos, lastDigitPos, wholeDigit])
             wholeDigit=-5
+
+        if(not lines[i][j].isdigit() and not lines[i][j]=='.'):
+            # print(lines[i][j])
+            symbolLine[j] = lines[i][j]
+    # print(symbolLine)
+    symbolTable.append(symbolLine)
+
     # print(digitsLine)
     digitTable.append(digitsLine)
 
-# print(digitTable)
+print(digitTable)
+print(symbolTable)
 
 # print(digitTable[0][0])
 
