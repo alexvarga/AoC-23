@@ -18,8 +18,6 @@ for i in range(0, len(lines)):
     firstDigitPos=-10
     wholeDigit = ''
     for j in range(0, len(lines[i])):
-        # if(lines[i][j]=='\n'):
-        #     continue
         if(lines[i][j].isdigit()):
             if(j+1<len(lines[i])):
                 if(not lines[i][j+1].isdigit() and not lines[i][j-1].isdigit()):
@@ -31,12 +29,9 @@ for i in range(0, len(lines)):
                 elif(j+1> len(lines[i]) and lines[i][j-1].isdigit()):
                     digitsLine.append([j, j, lines[i][j], 0])
                     continue
-                # if lastDigitPos== len(lines[i]):
-                #     digitsLine.append([firstDigitPos, lastDigitPos, wholeDigit, 0])
 
             if(lastDigitPos+1==j and lastDigitPos>-1):
                 wholeDigit+=(str(lines[i][j]))
-                # print(wholeDigit, "whoel")
 
             else:
 
@@ -46,7 +41,7 @@ for i in range(0, len(lines)):
             lastDigitPos=j
         elif(lastDigitPos>-1):
             if not wholeDigit == -5:
-                digitsLine.append([firstDigitPos, lastDigitPos, wholeDigit, 0])
+                digitsLine.append([firstDigitPos, lastDigitPos, wholeDigit, 0, 0])
             wholeDigit=-5
 
         if(not lines[i][j].isdigit() and not lines[i][j]=='.' and not lines[i][j]=='\n'):
@@ -55,14 +50,9 @@ for i in range(0, len(lines)):
 
     digitTable.append(digitsLine)
 
-# print(digitTable)
-# print(symbolTable
-
 sum = 0
-for l in range (0, len(digitTable)): #linije
-    # print(digitTable[l])
+for l in range (0, len(digitTable)):
     if digitTable[l]:
-        # print(l)
         for r in range (0, len(digitTable[l])):
             pocetak=digitTable[l][r][0]
             kraj=digitTable[l][r][1]
@@ -73,9 +63,7 @@ for l in range (0, len(digitTable)): #linije
             else:
                 lplus2=l+2
             if l-1 <0:
-                # print(l-1)
                 lminus1=0
-                # print(lminus1)
             else:
                 lminus1=l-1
             for i in range(lminus1, lplus2):
@@ -86,30 +74,26 @@ for l in range (0, len(digitTable)): #linije
                 else:
                     lplus2=l+2
                 if l-1 <0:
-                    # print(l-1)
                     lminus1=0
-                    # print(lminus1)
                 else:
                     lminus1=l-1
                 for j in range(pocetak-1, kraj+2):
-                    # print(lminus1, lplus2, " | ", pocetak-1, kraj+2, "|", i, j, '----', digitTable[l][r][2], '----', symbolTable[i][j] )
                     if(not symbolTable[i+1][j]==0):
 
                         if (digitTable[l][r][3]==0):
                             sum+= int(digitTable[l][r][2])
                             digitTable[l][r][3]=1
-                            # print(digitTable[l][r][2], "summed")
 
 print(sum)
 gearRatioSum=0
 for i in range(1, len(symbolTable)-1):
-    candidate=0
     previous=[]
     thisLine=[]
     nextLine=[]
     for j in range(0, len(symbolTable[i])):
+        candidates =[]
+
         if symbolTable[i][j]=='*':
-            print(i, j, " i i j")
             for item in digitTable[i-1]:
                 if(i-2 >=0):
                     previous = digitTable[i-2]
@@ -118,12 +102,17 @@ for i in range(1, len(symbolTable)-1):
                 print(previous, "|",  thisLine, "|", nextLine, "| prev, this, next")
                 for item in previous:
                     if item[0]-1 <=j<=item[1]+1:
-                        print("its in", item[2], item[0], item[1])
+                        print("its in", item[2], item[0], item[1], 'prev', j)
+                        candidates.append(item[2])
 
                 for item in thisLine:
                     if item[0]-1 <=j<=item[1]+1:
-                        print("its in", item[2], item[0], item[1])
+                        print("its in", item[2], item[0], item[1], 'this', j)
+                        candidates.append(item[2])
+
 
                 for item in nextLine:
                     if item[0]-1 <=j<=item[1]+1:
-                        print("its in", item[2], item[0], item[1])
+                        print("its in", item[2], item[0], item[1], 'next', j)
+                        candidates.append(item[2])
+            print(candidates)
