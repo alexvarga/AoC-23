@@ -2,7 +2,7 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
-with open (dir_path+'/test2.txt') as file:
+with open (dir_path+'/input.txt') as file:
     lines = file.readlines()
 
 
@@ -85,34 +85,34 @@ for l in range (0, len(digitTable)):
                             digitTable[l][r][3]=1
 
 print(sum)
-gearRatioSum=0
-for i in range(1, len(symbolTable)-1):
-    previous=[]
-    thisLine=[]
-    nextLine=[]
-    for j in range(0, len(symbolTable[i])):
-        candidates =[]
+# gearRatioSum=0
+# for i in range(1, len(symbolTable)-1):
+#     previous=[]
+#     thisLine=[]
+#     nextLine=[]
+#     for j in range(0, len(symbolTable[i])):
+#         candidates =[]
 
-        if symbolTable[i][j]=='*':
-            for item in digitTable[i-1]:
-                if(i-2 >=0):
-                    previous = digitTable[i-2]
-                thisLine = digitTable[i-1]
-                nextLine = digitTable[i]
-                print(previous, "|",  thisLine, "|", nextLine, "| prev, this, next")
-                for item in previous:
-                    if item[0]-1 <=j<=item[1]+1:
-                        print("its in", item[2], item[0], item[1], 'prev', j)
-                        candidates.append(item[2])
+#         if symbolTable[i][j]=='*':
+#             for item in digitTable[i-1]:
+#                 if(i-2 >=0):
+#                     previous = digitTable[i-2]
+#                 thisLine = digitTable[i-1]
+#                 nextLine = digitTable[i]
+#                 print(previous, "|",  thisLine, "|", nextLine, "| prev, this, next")
+#                 for item in previous:
+#                     if item[0]-1 <=j<=item[1]+1:
+#                         print("its in", item[2], item[0], item[1], 'prev', j)
+#                         candidates.append(item[2])
 
-                for item in thisLine:
-                    if item[0]-1 <=j<=item[1]+1:
-                        print("its in", item[2], item[0], item[1], 'this', j)
-                        candidates.append(item[2])
+#                 for item in thisLine:
+#                     if item[0]-1 <=j<=item[1]+1:
+#                         print("its in", item[2], item[0], item[1], 'this', j)
+#                         candidates.append(item[2])
 
 
-                for item in nextLine:
-                    if item[0]-1 <=j<=item[1]+1:
-                        print("its in", item[2], item[0], item[1], 'next', j)
-                        candidates.append(item[2])
-            print(candidates)
+#                 for item in nextLine:
+#                     if item[0]-1 <=j<=item[1]+1:
+#                         print("its in", item[2], item[0], item[1], 'next', j)
+#                         candidates.append(item[2])
+#             print(candidates)
