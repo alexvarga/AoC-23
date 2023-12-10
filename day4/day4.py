@@ -2,13 +2,19 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 import re
-sum = 0
+# sum = 0
 with open(dir_path+'/input.txt', 'r') as file:
     lines = file.readlines()
+
+
+
 
 myNums=[]
 winNums=[]
 winPoints=[]
+
+cards= [0]*len(lines)
+
 
 for line in lines:
     a = line.split(": ")[1].split(" | ")[0]
@@ -23,12 +29,26 @@ for i, numLine in enumerate(myNums):
     for num in numLine:
         if num in winNums[i]:
             win+=1
+            cards[i] = cards[i]+1
     if(win>=0):
         wins.append(win)
-
+print(wins, 'wins')
 
 output=0
 for i in wins:
     output+=(pow(2, i))
 
-print(output)
+# print(output)
+noOfcards = [1]*len(lines)
+# print(cards)
+
+for i, ca in enumerate(cards):
+    for j in range(1, ca+1):
+        # print(i, j)
+        # print(noOfcards)
+        noOfcards[i+j] = noOfcards[i]+noOfcards[i+j]
+
+# print(noOfcards)
+
+a = sum(noOfcards)
+print(a)
