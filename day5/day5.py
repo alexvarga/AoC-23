@@ -2,7 +2,7 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 import re
-with open(dir_path+'/test.txt', 'r') as file:
+with open(dir_path+'/input.txt', 'r') as file:
     lines = file.readlines()
 
 sts=0
@@ -92,7 +92,6 @@ for line in lines:
     if line == "\n":
         htl=0
 
-#problem with fertilizer to water
 
 def findLocation(inputs, map):
     dests = []
@@ -102,7 +101,7 @@ def findLocation(inputs, map):
         for item in map:
             if s>=int(item[1]) and s<int(item[1])+int(item[2]):
                 dest = s+(int(item[0]) - int(item[1]) )
-                continue
+                break
             else:
                 dest=s
 
@@ -110,8 +109,7 @@ def findLocation(inputs, map):
     return(dests)
 
 for i in loopy:
-    print(i)
 
     seeds = findLocation(seeds, i)
 
-    print(seeds, "destinations")
+    print(min(seeds), "min destination")
