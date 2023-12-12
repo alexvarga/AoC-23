@@ -1,8 +1,10 @@
+# from tqdm import tqdm
+
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 import re
-with open(dir_path+'/input.txt', 'r') as file:
+with open(dir_path+'/test.txt', 'r') as file:
     lines = file.readlines()
 
 sts=0
@@ -108,8 +110,22 @@ def findLocation(inputs, map):
         dests.append(dest)
     return(dests)
 
+a = []
+
+seedss = set()
+seedsStart = seeds[::2]
+seedsRange = seeds[1::2]
+
+
+for i in range(0, len(seedsStart)):
+    for s in range(0, int(seedsRange[i])):
+        seedss.add(int(seedsStart[i])+s)
+
+
+print(len(seedss))
+
 for i in loopy:
 
-    seeds = findLocation(seeds, i)
+    seedss = findLocation(seedss, i)
 
-    print(min(seeds), "min destination")
+print(min(seedss), "min destination")
