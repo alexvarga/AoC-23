@@ -3,7 +3,7 @@
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-import re
+# import re
 with open(dir_path+'/test.txt', 'r') as file:
     lines = file.readlines()
 
